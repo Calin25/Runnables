@@ -13,11 +13,14 @@ public class Main {
     public static void main(String args[]){
         List<Name> list = FileIO.parseFile("CA.JSON"); // Parse File in first
 
+        //Executor - no time delay
         ExecutorService exe = Executors.newCachedThreadPool();
+        //Scheduled Executor - For time delays
+        ScheduledExecutorService scheduledexe = Executors.newScheduledThreadPool(1);
 
         exe.submit(new PrintNameOccurances(list, "James"));
 
-        ScheduledExecutorService scheduledexe = Executors.newScheduledThreadPool(1);
+
         Future<Double> f1 = exe.submit(new Search(list, "Paul", 2000, 2017));
         nf.setMaximumFractionDigits(2);
 
